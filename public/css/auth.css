@@ -1,0 +1,88 @@
+/*
+  CSS This Owned Syntesis-Team And For Login And Register Page (@Fauzaro01)
+*/
+
+body {
+	background: linear-gradient(-45deg,  #5C27FE,#C165DD,#1de5e2,#2AFEB7);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.form-floating {
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 300px;
+  padding: 15px;
+  margin: auto;
+  background-color: aliceblue;
+  border: 2px solid azure;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.btn {
+    
+    border: none;
+    background: #04364A;
+    color: aliceblue;
+    font-family: gilroy;
+}
+.btn:hover {
+  background: linear-gradient(-45deg,#04364A,  #176B87, #64CCC5);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+  transition: 0.7s;
+}
+
+
+a {
+  color: #183455;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.border-pp {
+  border-radius: 10%;
+}
