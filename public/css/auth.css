@@ -2,8 +2,13 @@
   CSS This Owned Syntesis-Team And For Login And Register Page (@Fauzaro01)
 */
 
+
+* {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
 body {
-	background: linear-gradient(-45deg,  #5C27FE,#C165DD,#1de5e2,#2AFEB7);
+	background: linear-gradient(-45deg,  #164863,#427D9D,#9BBEC8);
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
   display: flex;
@@ -63,14 +68,12 @@ body {
 }
 
 .btn {
-    
     border: none;
     background: #04364A;
     color: aliceblue;
-    font-family: gilroy;
 }
 .btn:hover {
-  background: linear-gradient(-45deg,#04364A,  #176B87, #64CCC5);
+  background: linear-gradient(-45deg,#04364A,  #176B87, #02524c);
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
   transition: 0.7s;
