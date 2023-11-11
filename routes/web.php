@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Auth\LoginRegisterController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\BlogController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,11 +19,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::controller(LoginRegisterController::class)->group(function() {
-    Route::get('/register', 'register')->name('register');
+Route::controller(AuthController::class)->group(function() {
+    Route::get('/register', 'showRegister')->name('register');
     Route::post('/store', 'store')->name('store');
-    Route::get('/login', 'login')->name('login');
+    Route::get('/login', 'showLogin')->name('login');
     Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::post('/logout', 'logout')->name('logout');
 });
+
+Route::prefix('/blog')->group(function () {
+    Route::get('/create', [BlogController::class,'showFormBlog'])->name('blog.create');
+});
+
