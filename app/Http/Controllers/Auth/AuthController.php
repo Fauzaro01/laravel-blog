@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -36,6 +37,7 @@ class AuthController extends Controller
         ]);
 
         User::create([
+            'id' => Str::random(13),
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password)
