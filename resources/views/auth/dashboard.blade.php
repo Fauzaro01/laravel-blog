@@ -15,7 +15,8 @@
                     <div class="alert alert-success">
                         You are logged in!
                     </div>       
-                @endif                
+                @endif       
+                {{ Auth::user() }}
             </div>
         </div>
     </div>    
