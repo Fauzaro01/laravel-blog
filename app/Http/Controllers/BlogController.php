@@ -10,7 +10,12 @@ class BlogController extends Controller
         $this->middleware('auth');
     }
     
+    public function showIndex() {
+        return view('index');
+    }
+
     public function showFormBlog() {
+
         return view('formblog');
     }
 
