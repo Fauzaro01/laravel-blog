@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('password');
             $table->enum('role', ['member', 'admin'])->default('member');
             $table->boolean('isAllowed')->default(true);
-            $table->timestamps();
         });
     }
 
