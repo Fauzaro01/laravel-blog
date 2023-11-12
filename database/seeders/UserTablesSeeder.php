@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserTablesSeeder extends Seeder
 {
@@ -15,12 +16,11 @@ class UserTablesSeeder extends Seeder
     public function run(): void
     {
         DB::table("users")->insert([
-            "user_id" => "6541d894312d7",
+            "user_id" => Str::random(13),
             "username" => "fauzaro01",
             "email" => "muhamadfauzan4750@gmail.com",
-            "password" => Hash::make('fauzan475'), 
+            "password" => Hash::make('admin1234'), 
             "role" => "admin",
-            'isAllowed' => True
         ]);
     }
 }
