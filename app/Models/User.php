@@ -21,6 +21,7 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -41,24 +42,12 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-     /**
-     * The primary key associated with the model.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id'; // Nama Primary Key
 
-    /**
-     * The "type" of the primary key ID.
-     *
-     * @var string
-     */
-    protected $keyType = 'string';
+    protected $keyType = 'string'; // Tipe Primary Key
 
-    /**
-     * Indicates whether the IDs are auto-incrementing.
-     *
-     * @var bool
-     */
-    public $incrementing = false;
+    public $incrementing = false; // Matiin AutoIncrement
+
+    public $timestamps = false; // Ngilangin Timestamps
+
 }
