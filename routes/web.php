@@ -34,7 +34,7 @@ Route::controller(AuthController::class)->group(function() {
 });
 
 Route::prefix('/blog')->controller(BlogController::class)->group(function() {
-    Route::get('/', 'blog')->name('blog');
+    Route::get('/', 'showIndex')->name('blog');
     Route::get('/formblog', 'showFormBlog')->name('blog.formblog');
 
 });
