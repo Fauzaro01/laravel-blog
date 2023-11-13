@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class BlogController extends Controller
 {
@@ -11,7 +12,7 @@ class BlogController extends Controller
     }
     
     public function showIndex() {
-        return view('index');
+        return view('blog.index');
     }
 
     public function showFormBlog() {
