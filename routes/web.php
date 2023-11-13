@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Str;
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,9 +21,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function () {
-    return Str::random(13);
-});
 
 Route::controller(AuthController::class)->group(function() {
     Route::get('/register', 'showRegister')->name('register');
