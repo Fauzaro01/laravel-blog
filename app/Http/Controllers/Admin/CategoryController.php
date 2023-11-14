@@ -32,9 +32,9 @@ class CategoryController extends Controller
 
     public function destroy(Request $request)
     {
-        $request->validate(['category_id' => "required|int" ]);
+        $request->validate(['category_id' => "required|int"]);
         $category = Categories::find($request->category_id);
         $category->delete();
-        return redirect()->route('categories.index')->with('success', 'Category deleted successfully');
+        return redirect()->route('category')->with('success', 'Category deleted successfully');
     }
 }
