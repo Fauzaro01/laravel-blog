@@ -8,18 +8,21 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('role:admin');
     }
 
 
-    public function index() {
+    public function index()
+    {
         $categories = Categories::all();
 
         return view("category.index", compact("categories"));
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate(['category_name' => "required|max:50"]);
 
         Categories::create([
@@ -27,7 +30,6 @@ class CategoryController extends Controller
         ])->save();
 
         return redirect()->route('category')->with('success', "[{$request->category_name}] Berhasil di Tambahkan!");
-
     }
 
     public function destroy(Request $request)
@@ -35,6 +37,6 @@ class CategoryController extends Controller
         $request->validate(['category_id' => "required|int"]);
         $category = Categories::find($request->category_id);
         $category->delete();
-        return redirect()->route('category')->with('success', 'Category deleted successfully');
+        return redirect()->route('category')->with('success', "Category {$category->category_name} deleted successfully");
     }
 }

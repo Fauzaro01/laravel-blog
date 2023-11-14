@@ -21,16 +21,27 @@
             timer: 1800
         });
     </script>
+    @else
+    <script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Success!',
+            text: '{{ $message  }}',
+            showConfirmButton: false,
+            timer: 1800
+        });
+    </script>
     @endif
 
     <button class="btn btn-outline-secondary" onclick="toggleForm()">Create Category</button>
+    <br><br>
     <form id="toggle_form" action="{{ route('category.store') }}" method="post" style="display:none">
         @csrf
         <label for="category_name">Category Name: </label>
         <input type="text" name="category_name" id="category_name" required>
         <button class="btn btn-primary" type="submit">Kirim</button>
     </form>
-    <table class="table mt-3">
+    <table class="table table-sm">
         <thead>
             <tr>
                 <th>ID</th>
@@ -41,13 +52,13 @@
         <tbody>
             @foreach($categories as $category)
             <tr>
-                <td>{{ $category }}</td>
+                <td>{{ $category->category_id }}</td>
                 <td>{{ $category->category_name }}</td>
                 <td>
                     <form action="{{ route('category.destroy') }}" method="POST" style="display:inline">
                         @csrf
                         <input type="hidden" name="category_id" value="{{$category->category_id}}">
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </td>
             </tr>
