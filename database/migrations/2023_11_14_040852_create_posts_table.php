@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('user_id', 13);
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreignId('category_id')->constrained('categories', 'category_id');
-            $table->text('image_url')->default(false);
+            $table->text('image_url')->nullable();
             $table->timestamps();
         });
     }
