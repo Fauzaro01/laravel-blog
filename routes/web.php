@@ -2,10 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BlogController;
-use Illuminate\Support\Str;
-use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +21,7 @@ Route::get('/', function () {
 });
 
 
-Route::controller(AuthController::class)->group(function() {
+Route::controller(AuthController::class)->group(function () {
     Route::get('/register', 'showRegister')->name('register');
     Route::post('/store', 'store')->name('store');
     Route::get('/login', 'showLogin')->name('login');
@@ -31,9 +30,13 @@ Route::controller(AuthController::class)->group(function() {
     Route::post('/logout', 'logout')->name('logout');
 });
 
-Route::prefix('/blog')->controller(BlogController::class)->group(function() {
+Route::prefix('/blog')->controller(BlogController::class)->group(function () {
     Route::get('/', 'showIndex')->name('blog');
     Route::get('/formblog', 'showFormBlog')->name('blog.formblog');
-
 });
 
+Route::prefix('/category')->controller(CategoryController::class)->group(function () {
+    Route::get('/', 'index')->name('category');
+    Route::post('/store', 'store')->name('category.store');
+    Route::post('/destroy', 'destroy')->name('category.destroy');
+});
