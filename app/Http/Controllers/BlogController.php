@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Categories;
 
 class BlogController extends Controller
 {
@@ -16,11 +16,11 @@ class BlogController extends Controller
     }
 
     public function showFormBlog() {
-
-        return view('formblog');
+        $categories = Categories::all();
+        return view('blog.formBlog', ['categories'=> $categories]);
     }
 
-    public function createBlog(Request $request) {
+    public function storeBlog(Request $request) {
         $request->validate($request, [
             'title'=> 'required|min:8|max:100',
             'content' => 'require|min:8|max:500'
