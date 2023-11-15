@@ -12,17 +12,18 @@
         <div class="card">
             <div class="card-body">
                 <form id="contactForm" action="{{ route('blog.store') }}" method="post">
+                    @csrf
                     <div class="mb-3">
                         <label class="form-label" for="titleBlog">Title Blog</label>
-                        <input class="form-control" id="titleBlog" type="text" placeholder="Tulis Ide mu disini" required/>
+                        <input class="form-control" name="title" id="titleBlog" type="text" placeholder="Tulis Ide mu disini" required/>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="content">Content Blog</label>
-                        <textarea class="form-control" id="content" type="text" placeholder="Puhh Sepuhhh Tulis dong Puhhh.. " style="height: 8rem;" required></textarea>
+                        <textarea class="form-control" name="content" id="content" type="text" placeholder="Puhh Sepuhhh Tulis dong Puhhh.. " style="height: 8rem;" required></textarea>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="category">Category</label>
-                        <select class="form-select" id="category" aria-label="Category">
+                        <select class="form-select" name="category" id="category" aria-label="Category">
                             @foreach ($categories as $value)
                             <option value="{{$value->category_id}}">{{$value->category_name}}</option>
                             @endforeach
