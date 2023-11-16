@@ -33,7 +33,8 @@ Route::controller(AuthController::class)->group(function () {
 Route::prefix('/blog')->controller(BlogController::class)->group(function () {
     Route::get('/', 'showIndex')->name('blog');
     Route::get('/addblog', 'showFormBlog')->name('blog.addblog');
-    Route::post('/store', 'storeBlog')->name('blog.store');
+    Route::post('/store', 'store')->name('blog.store');
+    Route::post('/delete', 'delete')->name('blog.delete');
 });
 
 Route::prefix('/category')->controller(CategoryController::class)->group(function () {

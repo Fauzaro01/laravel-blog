@@ -22,7 +22,7 @@ class BlogController extends Controller
         return view('blog.formBlog', ['categories'=> $categories]);
     }
 
-    public function storeBlog(Request $request) {
+    public function store(Request $request) {
         $request->validate([
             'title'=> 'required',
             'content' => 'required',
@@ -41,5 +41,16 @@ class BlogController extends Controller
         return redirect()->route('dashboard')
         ->withSuccess("You have successfully Adding Postingan {$request->title}!");
 
+    }
+
+    public function delete(Request $req) {
+        $req->validate([
+            'blog_id' => 'required'
+        ]);
+
+        $postingan = Posts::find($req->blog_id);
+        $postingan->delete();
+
+        return redirect()->route('dashboard')->withSuccess("Postingan {$postingan->title} Telah di Hapus!");
     }
 }
