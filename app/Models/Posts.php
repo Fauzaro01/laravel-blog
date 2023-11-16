@@ -9,6 +9,9 @@ class Posts extends Model
 {
     use HasFactory;
     
+    protected $tabel = "posts"; // Nama Table
+    protected $primaryKey = "id"; // primary key nya = id
+    protected $keyType = 'string'; // Tipe Primary Key
     protected $fillable = ['id', 'title', 'content', 'user_id', 'category_id', 'image_url'];
 
     // Relasi dengan model User
@@ -20,6 +23,6 @@ class Posts extends Model
     // Relasi dengan model Category
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id', 'id');
+        return $this->belongsTo(Categories::class, 'category_id', 'id');
     }
 }
