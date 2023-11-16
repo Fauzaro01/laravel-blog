@@ -26,19 +26,30 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>ID</th>
                             <th>Title</th>
                             <th>Content</th>
                             <th>Category</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($blogs as $blog)
                         <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
+                            <th>{{$blog->id}}</th>
+                            <th>{{$blog->title}}</th>
+                            <th>{{$blog->content}}</th>
+                            <th>{{$blog->category_id}}</th>
+                            <th>
+                                <a href="#" class="btn btn-outline-secondary d-block">View</a>
+                                <form action="{{ route('blog.delete') }}" method="POST" style="display:inline">
+                                    @csrf
+                                    <input type="hidden" name="blog_id" value="{{$blog->id}}">
+                                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                </form>
+                            </th>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

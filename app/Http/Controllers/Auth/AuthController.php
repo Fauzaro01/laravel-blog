@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Posts;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -75,7 +76,8 @@ class AuthController extends Controller
     {
         if(Auth::check())
         {
-            return view('auth.dashboard');
+            $blogs = Posts::where('user_id', auth()->user()->id)->get();
+            return view('auth.dashboard', [ 'blogs' => $blogs ]);
         }
         
         return redirect()->route('login')
