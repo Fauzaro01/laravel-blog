@@ -14,7 +14,12 @@ class BlogController extends Controller
     }
     
     public function index($id) {
-        return view('blog.index');
+        try {
+            $post = Posts::findOrFail($id);
+            return view('blog.index', compact('posts'));
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return redirect()->route('home');
+        }
     }
 
     public function showFormBlog() {
