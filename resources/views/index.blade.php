@@ -80,7 +80,7 @@
                                     <h2 class="card-title h4">{{$blog->title}}</h2>
                                     <div class="small text-muted">Di Buat oleh {{$blog->user->username}} pada {{ date('F j, Y', $blog->created_at->timestamp) }}</div>
                                     <p class="card-text">{{$blog->content}}</p>
-                                    <a class="btn btn-primary" href="#!">Read more →</a>
+                                    <a class="btn btn-primary" href="{{ route('blog.page', $blog->id)}}">Read more →</a>
                                 </div>
                             </div>
                             @endforeach
@@ -92,9 +92,9 @@
                                 <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
                                 <div class="card-body">
                                     <h2 class="card-title h4">{{$blog->title}}</h2>
-                                    <div class="small text-muted">Di Buat oleh @ pada January 1, 2023</div>
+                                    <div class="small text-muted">Di Buat oleh {{$blog->user->username}} pada {{ date('F j, Y', $blog->created_at->timestamp) }}</div>
                                     <p class="card-text">{{$blog->content}}</p>
-                                    <a class="btn btn-primary" href="#!">Read more →</a>
+                                    <a class="btn btn-primary" href="{{ route('blog.page', $blog->id)}}">Read more →</a>
                                 </div>
                             </div>
                             @endforeach
