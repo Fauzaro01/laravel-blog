@@ -35,7 +35,7 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::prefix('/blog')->controller(BlogController::class)->group(function () {
-    Route::get('/{id}', 'index')->name('blog.page');
+    Route::get('/id/{id}', 'index')->name('blog.page');
     Route::get('/addblog', 'showFormBlog')->name('blog.addblog');
     Route::post('/store', 'store')->name('blog.store');
     Route::post('/delete', 'delete')->name('blog.delete');
