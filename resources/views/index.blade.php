@@ -32,8 +32,8 @@
                         <a class="nav-link {{ (request()->is('register')) ? 'active' : '' }}" href="{{ route('register') }}">Register</a>
                     </li>
                 @else
-                    <li class="nav-item"><a class="nav-link active" href="{{ route('home') }}">Home</a></li>    
-                    <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a></li>    
+                    <li class="nav-item"><a class="nav-link {{ (request()->is('/')) ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>    
+                    <li class="nav-item"><a class="nav-link {{ (request()->is('dashboard')) ? 'active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a></li>    
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ Auth::user()->username }}
@@ -75,10 +75,10 @@
                             <!-- Blog post-->
                             @foreach($blogs['ganjil'] as $blog):
                             <div class="card mb-4">
-                                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                                <a href="{{ route('blog.page', $blog->id)}}"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
                                 <div class="card-body">
                                     <h2 class="card-title h4">{{$blog->title}}</h2>
-                                    <div class="small text-muted">Di Buat oleh {{$blog->user->username}} pada {{ date('F j, Y', $blog->created_at->timestamp) }}</div>
+                                    <div class="small text-muted">Author : {{$blog->user->username}} pada {{ date('F j, Y', $blog->created_at->timestamp) }}</div>
                                     <p class="card-text">{{$blog->content}}</p>
                                     <a class="btn btn-primary" href="{{ route('blog.page', $blog->id)}}">Read more →</a>
                                 </div>
@@ -89,10 +89,10 @@
                             <!-- Blog post-->
                             @foreach($blogs['genap'] as $blog):
                             <div class="card mb-4">
-                                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                                <a href="{{ route('blog.page', $blog->id)}}"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
                                 <div class="card-body">
                                     <h2 class="card-title h4">{{$blog->title}}</h2>
-                                    <div class="small text-muted">Di Buat oleh {{$blog->user->username}} pada {{ date('F j, Y', $blog->created_at->timestamp) }}</div>
+                                    <div class="small text-muted">Author : {{$blog->user->username}} pada {{ date('F j, Y', $blog->created_at->timestamp) }}</div>
                                     <p class="card-text">{{$blog->content}}</p>
                                     <a class="btn btn-primary" href="{{ route('blog.page', $blog->id)}}">Read more →</a>
                                 </div>
