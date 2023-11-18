@@ -13,7 +13,7 @@ class BlogController extends Controller
         $this->middleware('auth');
     }
     
-    public function showIndex() {
+    public function index($id) {
         return view('blog.index');
     }
 
