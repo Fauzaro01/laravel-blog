@@ -95,4 +95,8 @@ class AuthController extends Controller
             ->withSuccess('You have logged out successfully!');;
     }    
 
+    public function test(Request $req) {
+        
+    }
+
 }

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\RootController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,12 +18,13 @@ use App\Http\Controllers\BlogController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Root Router ( / )
+Route::controller(RootController::class)->group(function () {
+    Route::get('/', 'root')->name('home');
 });
 
-
 Route::controller(AuthController::class)->group(function () {
+    Route::get('/test', 'test')->name('testing');
     Route::get('/register', 'showRegister')->name('register');
     Route::post('/store', 'store')->name('store');
     Route::get('/login', 'showLogin')->name('login');
