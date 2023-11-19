@@ -16,7 +16,7 @@
                     <form id="contactForm" action="{{ route('blog.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <label for="formFile" class="form-label">Default file input example</label>
+                            <label for="formFile" class="form-label">Image Cover Blog</label>
                             <input class="form-control" type="file" id="formFile" name="gambar">
                         </div>
                         <div class="mb-3">
