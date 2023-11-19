@@ -41,7 +41,7 @@
                             <th>{{$blog->content}}</th>
                             <th>{{$blog->category_id}}</th>
                             <th>
-                                <a href="#" class="btn btn-outline-secondary d-block">View</a>
+                                <a href="{{ route('blog.page', $blog->id) }}" class="btn btn-outline-secondary d-block">View</a>
                                 <form action="{{ route('blog.delete') }}" method="POST" style="display:inline">
                                     @csrf
                                     <input type="hidden" name="blog_id" value="{{$blog->id}}">
