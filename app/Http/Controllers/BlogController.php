@@ -13,14 +13,6 @@ class BlogController extends Controller
         $this->middleware('auth');
     }
     
-    public function index($id) {
-        try {
-            $posts = Posts::findOrFail($id);
-            return view('blog.index', compact('posts'));
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return redirect()->route('home');
-        }
-    }
 
     public function showFormBlog() {
         $categories = Categories::all();
@@ -31,8 +23,16 @@ class BlogController extends Controller
         $request->validate([
             'title'=> 'required',
             'content' => 'required',
-            'category' =>  'required'
+            'category' =>  'required',
+            'gambar' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
+
+        if($request->hasFile('gambar')) {
+            $gambarPath = Str::random(20) . '.' . $request->file('gambar')->getClientOriginalExtension(); 
+            $request->file('gambar')->storeAs('public/gambar', $gambarPath);
+        } else {
+            $gambarPath = null;
+        }
 
         Posts::create([
             'id' => Str::random(24),
@@ -40,7 +40,7 @@ class BlogController extends Controller
             'content' => $request->content,
             'user_id' => auth()->user()->id,
             'category_id' => $request->category,
-            'image_url' => ''
+            'image_url' => $gambarPath
         ]);
 
         return redirect()->route('dashboard')

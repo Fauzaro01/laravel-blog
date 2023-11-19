@@ -21,7 +21,7 @@ use App\Http\Controllers\RootController;
 // Root Router ( / )
 Route::controller(RootController::class)->group(function () {
     Route::get('/', 'root')->name('home');
-    Route::redirect('/blog', '/');
+    Route::get('/id/{id}', 'showblog')->name('blog.page');
 });
 
 Route::controller(AuthController::class)->group(function () {
@@ -35,7 +35,7 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::prefix('/blog')->controller(BlogController::class)->group(function () {
-    Route::get('/id/{id}', 'index')->name('blog.page');
+    Route::redirect('/', '/');
     Route::get('/addblog', 'showFormBlog')->name('blog.addblog');
     Route::post('/store', 'store')->name('blog.store');
     Route::post('/delete', 'delete')->name('blog.delete');

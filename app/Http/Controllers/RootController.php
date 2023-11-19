@@ -38,4 +38,12 @@ class RootController extends Controller
         return view("index", compact("blogs"));
     }
 
+    public function showblog($id) {
+        try {
+            $posts = Posts::findOrFail($id);
+            return view('blog.index', compact('posts'));
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return redirect()->route('home');
+        }
+    }
 }
