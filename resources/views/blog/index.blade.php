@@ -69,11 +69,15 @@
                         <!-- Post meta content-->
                         <div class="text-muted fst-italic mb-2">Posted on {{ date('F j, Y', $posts->created_at->timestamp) }} by {{$posts->user->username}}</div>
                         <!-- Post categories-->
-                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">#{{$posts->category->category_name}}</a>
-                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">#Sepuh</a>
+                        <div class="text-muted">Category:  
+                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">#{{$posts->category->category_name}}</a>
+                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">#Tag Adrian Sepuh</a>
+
+                        </div>
+                            
                     </header>   
                     <!-- Preview image figure-->
-                    <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
+                    <figure class="mb-4"><img class="img-fluid rounded" src="{{ asset('storage/gambar/' . $posts->image_url) }}" alt="..." /></figure>
                     <!-- Post content-->
                     <section class="mb-5">
                         <p class="fs-5 mb-4">{{$posts->content}}</p>
