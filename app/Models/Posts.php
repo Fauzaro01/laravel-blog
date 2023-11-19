@@ -23,6 +23,6 @@ class Posts extends Model
     // Relasi dengan model Category
     public function category()
     {
-        return $this->belongsTo(Categories::class, 'category_id', 'id');
+        return $this->belongsTo(Categories::class, 'category_id', 'category_id');
     }
 }
