@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Categories;
 use App\Models\Posts;
 
@@ -50,12 +51,14 @@ class BlogController extends Controller
 
     public function delete(Request $req) {
         $req->validate([
-            'blog_id' => 'required'
+            'blog_id' => 'required|str|max:32'
         ]);
-
-        $postingan = Posts::find($req->blog_id);
-        $postingan->delete();
-
+        $postingan = Posts::find($req->blog_id)->first();
+        if((count($postingan) > 0) and (Auth::user()->id == $postingan->id or (Auth::user()->role == "admin"))) {
+            $postingan->delete();
+        } else {
+            abort(403, 'Unauthorized');
+        }
         return redirect()->route('dashboard')->withSuccess("Postingan {$postingan->title} Telah di Hapus!");
     }
 }
