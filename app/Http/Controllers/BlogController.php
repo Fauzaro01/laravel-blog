@@ -53,11 +53,11 @@ class BlogController extends Controller
         $req->validate([
             'blog_id' => 'required|max:32'
         ]);
-        $postingan = Posts::find($req->blog_id)->first();
-        if((count($postingan) > 0) and (Auth::user()->id == $postingan->id or (Auth::user()->role == "admin"))) {
-            $postingan->delete();
+        $postingan = Posts::find($req->blog_id);
+        if(Auth::user()->id == $postingan->user_id or Auth::user()->role == "admin") {
+                $postingan->delete();
         } else {
-            abort(403, 'Unauthorized');
+                abort(403, 'Unauthorized');
         }
         return redirect()->route('dashboard')->withSuccess("Postingan {$postingan->title} Telah di Hapus!");
     }
