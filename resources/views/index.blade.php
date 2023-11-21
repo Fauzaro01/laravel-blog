@@ -73,9 +73,9 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <!-- Blog post-->
-                            @foreach($blogs['ganjil'] as $blog):
+                            @foreach($blogs['ganjil'] as $blog)
                             <div class="card mb-4">
-                                <a href="{{ route('blog.page', $blog->id)}}"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                                <a href="{{ route('blog.page', $blog->id)}}"><img class="card-img-top" src="{{ asset('storage/gambar/' . $blog->image_url) }}" alt="..." /></a>
                                 <div class="card-body">
                                     <h2 class="card-title h4">{{$blog->title}}</h2>
                                     <div class="small text-muted">Author : {{$blog->user->username}} pada {{ date('F j, Y', $blog->created_at->timestamp) }}</div>
@@ -87,9 +87,9 @@
                         </div>
                         <div class="col-lg-6">
                             <!-- Blog post-->
-                            @foreach($blogs['genap'] as $blog):
+                            @foreach($blogs['genap'] as $blog)
                             <div class="card mb-4">
-                                <a href="{{ route('blog.page', $blog->id)}}"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                                <a href="{{ route('blog.page', $blog->id)}}"><img class="card-img-top" src="{{ asset('storage/gambar/' . $blog->image_url) }}" alt="..." /></a>
                                 <div class="card-body">
                                     <h2 class="card-title h4">{{$blog->title}}</h2>
                                     <div class="small text-muted">Author : {{$blog->user->username}} pada {{ date('F j, Y', $blog->created_at->timestamp) }}</div>
