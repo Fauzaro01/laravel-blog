@@ -69,13 +69,13 @@
                         <!-- Post meta content-->
                         <div class="text-muted fst-italic mb-2">Posted on {{ date('F j, Y', $posts->created_at->timestamp) }} by {{$posts->user->username}}</div>
                         <!-- Post categories-->
-                        <div class="text-muted">Category:  
+                        <div class="text-muted">Category:
                             <a class="badge bg-secondary text-decoration-none link-light" href="#!">#{{$posts->category->category_name}}</a>
                             <a class="badge bg-secondary text-decoration-none link-light" href="#!">#Tag Adrian Sepuh</a>
 
                         </div>
-                            
-                    </header>   
+
+                    </header>
                     <!-- Preview image figure-->
                     <figure class="mb-4"><img class="img-fluid rounded" src="{{ asset('storage/gambar/' . $posts->image_url) }}" alt="..." /></figure>
                     <!-- Post content-->
@@ -87,17 +87,15 @@
                 <section class="mb-5">
                     <div class="card bg-light">
                         <div class="card-body">
+                            @if(Auth::check())
                             <!-- Comment form-->
                             <form class="d-flex">
-                                <div class="container-fluid sm">
-                                    <div class="fw-bold">{{ Auth::user()->username}} (You) </div>
-                                    <img class="rounded-circle" width="50px" height="50px" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
-                                </div>
-                                <textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea>
+                                <textarea id="komenku" class="form-control" rows="2" placeholder="Join the discussion and leave a comment!"></textarea>
                                 <button class="btn btn-secondary" type="submit">Kirim</button>
                             </form>
                             <hr>
                             <br>
+                            @endif
                             <!-- Comment with nested comments-->
                             <div class="d-flex mb-4">
                                 <!-- Parent comment-->
@@ -154,16 +152,16 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">Web Design</a></li>
-                                    <li><a href="#!">HTML</a></li>
-                                    <li><a href="#!">Freebies</a></li>
+                                    @foreach($categories['ganjil'] as $key)
+                                    <li><a class="text-decoration-none" href="#!">{{$key->category_name}}</a></li>
+                                    @endforeach
                                 </ul>
                             </div>
                             <div class="col-sm-6">
                                 <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">JavaScript</a></li>
-                                    <li><a href="#!">CSS</a></li>
-                                    <li><a href="#!">Tutorials</a></li>
+                                    @foreach($categories['genap'] as $key)
+                                    <li><a class="text-decoration-none" href="#!">{{$key->category_name}}</a></li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
