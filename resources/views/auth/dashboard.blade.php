@@ -27,6 +27,9 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            @if(Auth::user()->role == 'admin')
+                            <th>Pemilik</th>
+                            @endif
                             <th>Title</th>
                             <th>Content</th>
                             <th>Category</th>
@@ -37,11 +40,14 @@
                         @foreach ($blogs as $blog)
                         <tr>
                             <th>{{$blog->id}}</th>
+                            @if(Auth::user()->role == 'admin')
+                            <th>{{$blog->user->username}}</th>
+                            @endif
                             <th>{{$blog->title}}</th>
                             <th>{{$blog->content}}</th>
                             <th>{{$blog->category_id}}</th>
                             <th>
-                                <a href="{{ route('blog.page', $blog->id) }}" class="btn btn-outline-secondary d-block">View</a>
+                                <a href="{{ route('blog.page', $blog->id) }}" class="btn btn-outline-secondary d-block">View</a> &nbsp;
                                 <form action="{{ route('blog.delete') }}" method="POST" style="display:inline">
                                     @csrf
                                     <input type="hidden" name="blog_id" value="{{$blog->id}}">
