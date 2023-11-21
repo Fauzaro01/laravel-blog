@@ -18,12 +18,12 @@ class AuthController extends Controller
             'logout', 'dashboard'
         ]);
     }
-    
+
     public function showRegister()
     {
         return view('auth.register');
     }
-    
+
     public function showLogin()
     {
         return view('auth.login');
@@ -48,44 +48,48 @@ class AuthController extends Controller
         Auth::attempt($credentials);
         $request->session()->regenerate();
         return redirect()->route('dashboard')
-        ->withSuccess('You have successfully registered & logged in!');
+            ->withSuccess('You have successfully registered & logged in!');
     }
 
 
     public function authenticate(Request $request)
-{
-    $credentials = $request->validate([
-        'email' => 'required|email',
-        'password' => 'required'
-    ]);
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
-    if (Auth::attempt($credentials)) {
-        $request->session()->regenerate();
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard'))
-            ->withSuccess('You have successfully logged in!');
+            return redirect()->intended(route('dashboard'))
+                ->withSuccess('You have successfully logged in!');
+        }
+
+        return back()->withErrors([
+            'email' => 'Your provided credentials do not match in our records.',
+        ])->onlyInput('email');
     }
 
-    return back()->withErrors([
-        'email' => 'Your provided credentials do not match in our records.',
-    ])->onlyInput('email');
-}
 
-    
     public function dashboard()
     {
-        if(Auth::check())
-        {
-            $blogs = Posts::where('user_id', auth()->user()->id)->get();
-            return view('auth.dashboard', [ 'blogs' => $blogs ]);
+        if (Auth::check()) {
+            if (Auth::user()->role == "admin") {
+                $blogs = Posts::all();
+            } else {
+                $blogs = Posts::where('user_id', auth()->user()->id)->get();
+            }
+
+            return view('auth.dashboard', ['blogs' => $blogs]);
         }
-        
+
         return redirect()->route('login')
             ->withErrors([
-            'email' => 'Please login to access the dashboard.',
-        ])->onlyInput('email');
-    } 
-    
+                'email' => 'Please login to access the dashboard.',
+            ])->onlyInput('email');
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();
@@ -93,10 +97,9 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         return redirect()->route('login')
             ->withSuccess('You have logged out successfully!');;
-    }    
-
-    public function test(Request $req) {
-        
     }
 
+    public function test(Request $req)
+    {
+    }
 }
