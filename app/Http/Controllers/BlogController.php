@@ -51,7 +51,7 @@ class BlogController extends Controller
 
     public function delete(Request $req) {
         $req->validate([
-            'blog_id' => 'required|str|max:32'
+            'blog_id' => 'required|max:32'
         ]);
         $postingan = Posts::find($req->blog_id)->first();
         if((count($postingan) > 0) and (Auth::user()->id == $postingan->id or (Auth::user()->role == "admin"))) {
