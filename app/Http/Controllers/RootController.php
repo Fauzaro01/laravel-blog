@@ -43,7 +43,7 @@ class RootController extends Controller
     public function showblog($id) {
         try {
             $categories = self::pisahkanGanjilGenap(Categories::all());
-            $posts = Posts::findOrFail($id);
+            $posts = Posts::with('comments.user')->findOrFail($id);
             return view('blog.index', compact('posts', "categories"));
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return redirect()->route('home');

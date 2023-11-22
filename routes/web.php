@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\RootController;
 
 /*
@@ -34,6 +35,12 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/logout', 'logout')->name('logout');
 });
 
+Route::prefix('/category')->controller(CategoryController::class)->group(function () {
+    Route::get('/', 'index')->name('category');
+    Route::post('/store', 'store')->name('category.store');
+    Route::post('/destroy', 'destroy')->name('category.destroy');
+});
+
 Route::prefix('/blog')->controller(BlogController::class)->group(function () {
     Route::redirect('/', '/');
     Route::get('/addblog', 'showFormBlog')->name('blog.addblog');
@@ -41,8 +48,7 @@ Route::prefix('/blog')->controller(BlogController::class)->group(function () {
     Route::post('/delete', 'delete')->name('blog.delete');
 });
 
-Route::prefix('/category')->controller(CategoryController::class)->group(function () {
-    Route::get('/', 'index')->name('category');
-    Route::post('/store', 'store')->name('category.store');
-    Route::post('/destroy', 'destroy')->name('category.destroy');
+Route::prefix('/coments')->controller(CommentsController::class)->group(function () {
+    Route::post('/store', 'store')->name('comments.store');
+    Route::delete('/delete', 'delete')->name('comments.delete');
 });
