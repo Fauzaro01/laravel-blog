@@ -89,46 +89,26 @@
                         <div class="card-body">
                             @if(Auth::check())
                             <!-- Comment form-->
-                            <form class="d-flex">
-                                <textarea id="komenku" class="form-control" rows="2" placeholder="Join the discussion and leave a comment!"></textarea>
+                            <form action="{{ route('comments.store') }}" method="POST" class="d-flex">
+                                @csrf
+                                <input type="hidden" name="post_id" value="{{ $posts->id }}">
+                                <textarea name="content" id="comments" class="form-control" rows="2" placeholder="Join the discussion and leave a comment!"></textarea>
                                 <button class="btn btn-secondary" type="submit">Kirim</button>
                             </form>
                             <hr>
                             <br>
                             @endif
-                            <!-- Comment with nested comments-->
-                            <div class="d-flex mb-4">
-                                <!-- Parent comment-->
-                                <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                <div class="ms-3">
-                                    <div class="fw-bold">Commenter Name</div>
-                                    If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
-                                    <!-- Child comment 1-->
-                                    <div class="d-flex mt-4">
-                                        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                        <div class="ms-3">
-                                            <div class="fw-bold">Commenter Name</div>
-                                            And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.
-                                        </div>
-                                    </div>
-                                    <!-- Child comment 2-->
-                                    <div class="d-flex mt-4">
-                                        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                        <div class="ms-3">
-                                            <div class="fw-bold">Commenter Name</div>
-                                            When you put money directly to a problem, it makes a good headline.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                
+                            @foreach($posts->comments as $comment)
                             <!-- Single comment-->
                             <div class="d-flex">
-                                <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                <div class="flex-shrink-0"><img class="rounded-circle" width="50px" height="50px" src="/img/moona_01.jpeg" alt="..." /></div>
                                 <div class="ms-3">
-                                    <div class="fw-bold">Commenter Name</div>
-                                    When I look at the universe and all the ways the universe wants to kill us, I find it hard to reconcile that with statements of beneficence.
+                                    <div class="fw-bold">{{ $comment->user->username }}</div>
+                                    {{ $comment->content }}
                                 </div>
-                            </div>
+                            </div> <br>
+                            @endforeach
                         </div>
                     </div>
                 </section>
