@@ -10,9 +10,21 @@ class Comments extends Model
     use HasFactory;
 
     protected $table = "comments";
-    protected $primaryKey = 'category_id';
+    protected $primaryKey = "d";
+    protected $keyType = "string";
     protected $fillable = [
         'id',
-        'content'
+        'content',
+        'user_id',
+        'post_id'
     ];
+
+    public function posts() {
+        return $this->belongsTo(Posts::class);
+    }
+
+    public function user()
+    {
+    return $this->belongsTo(Users::class);
+    }
 }

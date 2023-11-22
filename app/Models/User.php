@@ -50,4 +50,12 @@ class User extends Authenticatable
 
     public $timestamps = false; // Ngilangin Timestamps
 
+    public function posts() {
+        return $this->hasMany(Posts::class);
+    }
+
+    public function comments()
+{
+    return $this->hasMany(Comments::class);
+}
 }
